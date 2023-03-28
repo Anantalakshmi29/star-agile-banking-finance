@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
        steps {
          echo 'Checkout the code from GitRepo'
-         git 'https://github.com/Anantalakshmi29/star-agile-insurance-project.git'
+         git 'https://github.com/Anantalakshmi29/star-agile-banking-finance.git'
 	 }
        }
     stage('Build the Application'){
@@ -18,5 +18,11 @@ pipeline {
 	sh 'mvn clean package'
             }
           }
+stage('Publish Reports') {
+        steps {
+	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/FinanceMe project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+	}
+	}
+
 	  }
 	  }
